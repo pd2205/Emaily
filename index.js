@@ -6,8 +6,6 @@ const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 require("./models/user");
 require("./services/passport");
-
-const welcomeRouth = require("./routes/welcomeRoute");
 const authRouth = require("./routes/authRoutes");
 
 const app = express();
@@ -32,8 +30,6 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", () => {
   console.log("Connected to MongoDB database!");
 });
-
-welcomeRouth(app);
 authRouth(app);
 require("./routes/billingRoutes")(app);
 if (process.env.NODE_ENV === "production") {
